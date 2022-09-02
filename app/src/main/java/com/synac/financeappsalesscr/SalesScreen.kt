@@ -16,10 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.synac.financeappsalesscr.ui.theme.*
@@ -77,6 +80,104 @@ fun SalesScreen() {
                 )
                 Spacer(modifier = Modifier.width(15.dp))
             }
+        }
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 20.dp),
+            text = "Sales Revenue",
+            fontSize = 26.sp,
+            color = Color.White,
+            fontFamily = FontFamily(Font(R.font.ubuntu))
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+            ) {
+                InfoCard(
+                    modifier = Modifier.weight(8f),
+                    icon = painterResource(id = R.drawable.ic_sales),
+                    mainText = "230k",
+                    subText = "Sales"
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                InfoCard(
+                    modifier = Modifier.weight(11f),
+                    icon = painterResource(id = R.drawable.ic_wallet),
+                    mainText = "1.423k",
+                    subText = "Products"
+                )
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+            ) {
+                InfoCard(
+                    modifier = Modifier.weight(10f),
+                    icon = painterResource(id = R.drawable.ic_user),
+                    mainText = "8.549k",
+                    subText = "Customers"
+                )
+                Spacer(
+                    modifier = Modifier.weight(1f),
+                )
+                InfoCard(
+                    modifier = Modifier.weight(8f),
+                    icon = painterResource(id = R.drawable.ic_chart),
+                    mainText = "$9745",
+                    subText = "Revenue"
+                )
+                Spacer(
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun InfoCard(
+    modifier: Modifier =  Modifier,
+    icon: Painter,
+    mainText: String,
+    subText: String
+) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(30.dp))
+            .fillMaxWidth()
+            .background(Color.White.copy(alpha = 0.1f)),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                painter = icon,
+                contentDescription = mainText,
+                modifier = Modifier.size(25.dp),
+                tint = Color.White
+            )
+            Text(
+                text = mainText,
+                fontSize = 30.sp,
+                fontFamily = FontFamily(Font(R.font.ubuntu)),
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.padding(vertical = 10.dp)
+            )
+            Text(
+                text = subText,
+                fontSize = 14.sp,
+                fontFamily = FontFamily(Font(R.font.ubuntu)),
+                color = Color.White
+            )
         }
     }
 }
